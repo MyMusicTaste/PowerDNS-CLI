@@ -23,6 +23,14 @@ cd /path/to/pydns
 pip install -e .
 ```
 
+### Config:
+
+```
+export PDNS_API_KEY=<the API key get from the PDNS's /etc/powerdns/pdns.conf>
+export PDNS_WEB_HOST=<PDNS server's API host address>
+export PDNS_WEB_PORT=<PDNS server's API port>
+```
+
 ### Help:
 
 ```
@@ -44,7 +52,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --apikey APIKEY       PDNS API Key
+  --apikey APIKEY       PDNS API Key, default getting from os env's PDNS_API_KEY
   --apihost APIHOST     PDNS API Host
   --apiport APIPORT     PDNS API Port
   --content CONTENT     DNS Record content
