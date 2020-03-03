@@ -27,8 +27,8 @@ class PyTest(TestCommand):
 
 
 def get_version():
-    import pydns_cli
-    return pydns_cli.__version__
+    import pydns
+    return pydns.__version__
 
 
 def readme():
@@ -37,9 +37,9 @@ def readme():
 
 
 setup(
-    name='mmt-server',
+    name='pydns',
     version=get_version(),
-    description='Base git repo for aggregating all services',
+    description='PowerDNS Python CLI',
     long_description=readme(),
     classifiers=[
     'Development Status :: 3 - Alpha',
@@ -53,16 +53,12 @@ setup(
     license='MIT',
     packages=find_packages(exclude=['tests*']),
     include_package_data=True,
-    install_requires=[
-        'Click',
-        'colorama',
-        'cookiecutter',
-    ],
+    install_requires=[],
     setup_requires=[] + pytest_runner,
-    tests_require=['pytest', 'pytest-asyncio', 'pytest-cov', 'pytest-redis'],
+    tests_require=[],
     entry_points='''
         [console_scripts]
-        pydns=pydns.cli:
+        pydns=pydns.cli:PDNSControl
     ''',
     cmdclass={},
     zip_safe=False
