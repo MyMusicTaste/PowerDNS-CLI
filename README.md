@@ -118,36 +118,6 @@ pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --
 2016-09-06 00:05:30,753 pdns         INFO     DNS Record 'www.example.com.' Successfully Added/Update
 ```
 
-#### Digging the zone:
-
-```
-$ dig @localhost example.com NS
-
-; <<>> DiG 9.8.3-P1 <<>> @localhost example.com NS
-; (2 servers found)
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13488
-;; flags: qr aa rd; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 2
-;; WARNING: recursion requested but not available
-
-;; QUESTION SECTION:
-;example.com.           IN  NS
-
-;; ANSWER SECTION:
-example.com.        3600    IN  NS  ns2.example.com.
-example.com.        3600    IN  NS  ns1.example.com.
-
-;; ADDITIONAL SECTION:
-ns1.example.com.    3600    IN  A   172.16.18.15
-ns2.example.com.    3600    IN  A   172.16.18.16
-
-;; Query time: 24 msec
-;; SERVER: 127.0.0.1#53(127.0.0.1)
-;; WHEN: Tue Sep  6 02:03:26 2016
-;; MSG SIZE  rcvd: 97
-```
-
 ### Adding a NAPTR record
 
 Adding a `NAPTR` record with value `10 10 "S" "SIP+D2U" "" _sip._udp.example.com.`: 
@@ -168,33 +138,6 @@ Adding 3 `NAPTR`records:
 ```
 pydns --zone wonderland.com. --content "10 10 \"S\" \"SIPS+D2T\" \"\" _sips._tcp.wonderland.com." --content "20 10 \"S\" \"SIP+D2T\" \"\" _sip._tcp.wonderland.com." --content "30 10 \"S\" \"SIP+D2U\" \"\" _sip._udp.wonderland.com." --name wonderland.com. --recordType=NAPTR add_record
 2016-11-09 07:30:32,386 pdns         INFO     DNS Record 'wonderland.com.' Successfully Added/Updated
-```
-
-Checking the result:
-
-```
-hank-2:~ pietro$ dig @localhost NAPTR wonderland.com 
-
-; <<>> DiG 9.8.3-P1 <<>> @localhost NAPTR wonderland.com
-; (2 servers found)
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 2252
-;; flags: qr aa rd; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
-;; WARNING: recursion requested but not available
-
-;; QUESTION SECTION:
-;wonderland.com.            IN  NAPTR
-
-;; ANSWER SECTION:
-wonderland.com.     3600    IN  NAPTR   20 10 "S" "SIP+D2T" "" _sip._tcp.wonderland.com.
-wonderland.com.     3600    IN  NAPTR   30 10 "S" "SIP+D2U" "" _sip._udp.wonderland.com.
-wonderland.com.     3600    IN  NAPTR   10 10 "S" "SIPS+D2T" "" _sips._tcp.wonderland.com.
-
-;; Query time: 8 msec
-;; SERVER: 127.0.0.1#53(127.0.0.1)
-;; WHEN: Wed Nov  9 08:30:35 2016
-;; MSG SIZE  rcvd: 193
 ```
 
 ### Adding an SRV record
