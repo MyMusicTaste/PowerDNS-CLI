@@ -1,6 +1,6 @@
 # Changelog
 
-0.0.1 (unchanged)
+0.0.1 (2020-03-03)
 ------------------
 
 - Make the script intallable
