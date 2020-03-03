@@ -1,8 +1,9 @@
-# PowerDNS Python CLI
+# pydns
 
-This simple scripts allows you to manage a [PowerDNS](https://www.powerdns.com/) server trought the [REST API](https://doc.powerdns.com/md/httpapi/README/).
+pydns allows you to manage a [PowerDNS](https://www.powerdns.com/) server trought the [REST API](https://doc.powerdns.com/md/httpapi/README/).
 
-This script is inspired by the [job](https://github.com/mrlesmithjr/python-powerdns-management) of [Larry Smith Jr.](http://everythingshouldbevirtual.com/).
+This script is inspired by the [job](https://github.com/mrlesmithjr/python-powerdns-management) of [Larry Smith Jr.](http://everythingshouldbevirtual.com/),
+and [this](https://github.com/pbertera/PowerDNS-CLI) of [Pietro Bertera](https://github.com/pbertera/PowerDNS-CLI).
 
 Main changes to the original script:
     
@@ -11,6 +12,7 @@ Main changes to the original script:
 * updated to the API V1 (https://doc.powerdns.com/md/httpapi/api_spec/)
 * --debug switch
 * Python 3
+* installable using pip
 
 ## Usage:
 
@@ -188,3 +190,7 @@ Adding an `SRV` record with value 20 50 5060 pbx2.example.com.` for the name `_s
 ./pdns.py  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --content "20 50 5060 pbx2.example.com." --name _sip._udp --recordType SRV  add_record
 2016-09-06 00:15:24,356 pdns         INFO     DNS Record '_sip._udp.example.com.' Successfully Added/Updated
 ```
+
+## Maintainer
+
+Jin Nguyen <dangtrinhnt@mymusictaste.com>
