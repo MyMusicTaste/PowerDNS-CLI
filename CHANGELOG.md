@@ -1,6 +1,6 @@
 # Changelog
 
-0.0.2 (unreleased)
+0.0.2 (2020-03-06)
 ------------------
 
 - Rename pydns to inpydns to avoid conflict
