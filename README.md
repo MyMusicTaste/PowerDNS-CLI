@@ -1,6 +1,6 @@
-# pydns
+# inpydns
 
-pydns allows you to manage a [PowerDNS](https://www.powerdns.com/) server trought the [REST API](https://doc.powerdns.com/md/httpapi/README/).
+inpydns allows you to manage a [PowerDNS](https://www.powerdns.com/) server trought the [REST API](https://doc.powerdns.com/md/httpapi/README/).
 
 This script is inspired by the [job](https://github.com/mrlesmithjr/python-powerdns-management) of [Larry Smith Jr.](http://everythingshouldbevirtual.com/),
 and [this](https://github.com/pbertera/PowerDNS-CLI) of [Pietro Bertera](https://github.com/pbertera/PowerDNS-CLI).
@@ -19,7 +19,7 @@ Main changes to the original script:
 ### Installation
 
 ```
-cd /path/to/pydns
+cd /path/to/inpydns
 pip install -e .
 ```
 
@@ -34,8 +34,8 @@ export PDNS_WEB_PORT=<PDNS server's API port>
 ### Help:
 
 ```
-# pydns -h
-usage: pydns [-h] [--apikey APIKEY] [--apihost APIHOST] [--apiport APIPORT]
+# inpydns -h
+usage: inpydns [-h] [--apikey APIKEY] [--apihost APIHOST] [--apiport APIPORT]
                [--content CONTENT] [--disabled]
                [--masters MASTERS] [--name NAME] [--nameserver NAMESERVER]
                [--priority PRIORITY]
@@ -77,7 +77,7 @@ optional arguments:
 The following commands adds the new MASTER zone `example.com`the PowerDNS API Key is `MyAPIKey` the nameserver is `ns.example.com`
 
 ```
-pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --zoneType MASTER --nameserver ns.example.com. --debug add_zone
+inpydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --zoneType MASTER --nameserver ns.example.com. --debug add_zone
 2016-09-05 23:55:15,591 pdns         DEBUG    sending GET request to http://127.0.0.1:80/api/v1/servers/localhost/zones/example.com.
 2016-09-05 23:55:15,615 pdns         DEBUG    returned 422 {"error": "Could not find domain 'example.com.'"}
 2016-09-05 23:55:15,616 pdns         DEBUG    sending POST request to http://127.0.0.1:80/api/v1/servers/localhost/zones
@@ -89,7 +89,7 @@ pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --
 ### Adding a zone with multiple NS
 
 ```
-pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --zoneType MASTER --nameserver ns1.example.com.,ns2.example.com. --debug add_zone
+inpydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --zoneType MASTER --nameserver ns1.example.com.,ns2.example.com. --debug add_zone
 2016-09-06 00:00:55,286 pdns         DEBUG    sending GET request to http://127.0.0.1:80/api/v1/servers/localhost/zones/example.com.
 2016-09-06 00:00:55,379 pdns         DEBUG    returned 422 {"error": "Could not find domain 'example.com.'"}
 2016-09-06 00:00:55,379 pdns         DEBUG    sending POST request to http://127.0.0.1:80/api/v1/servers/localhost/zones
@@ -105,7 +105,7 @@ pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --
 The following command adds the A record for the zone NS: `ns1.example.com` with IP `172.16.18.15`:
 
 ```
-pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --recordType A --name ns1.example.com. --content 172.16.18.15 add_record
+inpydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --recordType A --name ns1.example.com. --content 172.16.18.15 add_record
 2016-09-05 23:58:05,652 pdns         INFO     DNS Record 'ns1.example.com.' Successfully Added/Updated
 ```
 
@@ -114,7 +114,7 @@ pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --
 `www.example.com`is a `CNAME` pointing to `host.example.com.`:
 
 ```
-pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --recordType CNAME --name www.example.com. --content host.example.com. add_record
+inpydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --recordType CNAME --name www.example.com. --content host.example.com. add_record
 2016-09-06 00:05:30,753 pdns         INFO     DNS Record 'www.example.com.' Successfully Added/Update
 ```
 
@@ -123,7 +123,7 @@ pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --
 Adding a `NAPTR` record with value `10 10 "S" "SIP+D2U" "" _sip._udp.example.com.`: 
 
 ```
-pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --content "10 10 \"S\" \"SIP+D2U\" \"\" _sip._udp.example.com." --name "example.com." --recordType NAPTR  add_record 
+inpydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --content "10 10 \"S\" \"SIP+D2U\" \"\" _sip._udp.example.com." --name "example.com." --recordType NAPTR  add_record 
 2016-09-06 00:10:30,137 pdns         INFO     DNS Record 'example.com.' Successfully Added/Updated
 ```
 
@@ -136,7 +136,7 @@ Adding 3 `NAPTR`records:
 * `30 10 "S" "SIP+D2U" "" _sip._udp.wonderland.com.`
 
 ```
-pydns --zone wonderland.com. --content "10 10 \"S\" \"SIPS+D2T\" \"\" _sips._tcp.wonderland.com." --content "20 10 \"S\" \"SIP+D2T\" \"\" _sip._tcp.wonderland.com." --content "30 10 \"S\" \"SIP+D2U\" \"\" _sip._udp.wonderland.com." --name wonderland.com. --recordType=NAPTR add_record
+inpydns --zone wonderland.com. --content "10 10 \"S\" \"SIPS+D2T\" \"\" _sips._tcp.wonderland.com." --content "20 10 \"S\" \"SIP+D2T\" \"\" _sip._tcp.wonderland.com." --content "30 10 \"S\" \"SIP+D2U\" \"\" _sip._udp.wonderland.com." --name wonderland.com. --recordType=NAPTR add_record
 2016-11-09 07:30:32,386 pdns         INFO     DNS Record 'wonderland.com.' Successfully Added/Updated
 ```
 
@@ -145,7 +145,7 @@ pydns --zone wonderland.com. --content "10 10 \"S\" \"SIPS+D2T\" \"\" _sips._tcp
 Adding an `SRV` record with value 20 50 5060 pbx2.example.com.` for the name `_sip._udp.example.com.` *Please note that if you don't add the trailing dot (.) the zone name will be concatenated to the --name parameter*
 
 ```
-pydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --content "20 50 5060 pbx2.example.com." --name _sip._udp --recordType SRV  add_record
+inpydns  --apikey MyAPIKey --apihost 127.0.0.1 --apiport 80 --zone example.com. --content "20 50 5060 pbx2.example.com." --name _sip._udp --recordType SRV  add_record
 2016-09-06 00:15:24,356 pdns         INFO     DNS Record '_sip._udp.example.com.' Successfully Added/Updated
 ```
 

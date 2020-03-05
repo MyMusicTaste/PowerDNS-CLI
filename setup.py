@@ -27,8 +27,8 @@ class PyTest(TestCommand):
 
 
 def get_version():
-    import pydns
-    return pydns.__version__
+    import inpydns
+    return inpydns.__version__
 
 
 def readme():
@@ -37,17 +37,19 @@ def readme():
 
 
 setup(
-    name='pydns',
+    name='inpydns',
     version=get_version(),
-    description='PowerDNS Python CLI',
+    description='MMT PowerDNS Python CLI',
     long_description=readme(),
     classifiers=[
     'Development Status :: 3 - Alpha',
     'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     ],
     keywords='',
-    url='http://github.com/',
+    url='http://github.com/MyMusicTaste/inpydns',
     author='Jin Nguyen',
     author_email='dangtrinhnt@mymusictaste.com',
     license='MIT',
@@ -58,7 +60,7 @@ setup(
     tests_require=[],
     entry_points='''
         [console_scripts]
-        pydns=pydns.cli:PDNSControl
+        inpydns=inpydns.cli:PDNSControl
     ''',
     cmdclass={},
     zip_safe=False
