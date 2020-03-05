@@ -3,7 +3,7 @@
 0.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Rename pydns to inpydns to avoid conflict
 
 
 0.0.1 (2020-03-03)
